@@ -1,5 +1,6 @@
 server_address = minetest.get_server_info().address
 if server_address == "ctf.rubenwardy.com" then
+    hudpos = {x = 0.5, y = 0.09}
     time = 0
     subtract = 0
     refresh = 0.1
@@ -37,7 +38,6 @@ if server_address == "ctf.rubenwardy.com" then
     minetest.register_globalstep(function(dtime)
         time = time + dtime
         if time - subtract > refresh then
-            hudpos = {x = 0.5, y = 0.09}
             subtract = subtract + refresh
             screen_message = ""
             for i = 1, #names do
