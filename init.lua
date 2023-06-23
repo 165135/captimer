@@ -30,11 +30,11 @@ if minetest.get_server_info().address == "ctf.rubenwardy.com" then
         end
         if string.find(message, "has dropped ") and string.find(message, " flag") then
             player = message:sub(13,string.find(message, "has dropped ")-26)
-            removefromlist(player,nil)
+            remove_from_list(player,nil)
         end
         if string.find(message, "has captured ") and string.find(message, " flag") then
             player = message:sub(13,string.find(message, "has captured ")-26)
-            removefromlist(player,nil)
+            remove_from_list(player,nil)
         end
         if string.find(message, "Map: ") and string.find(message, " by ") then
             names = {}
