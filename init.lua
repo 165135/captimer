@@ -28,9 +28,13 @@ if minetest.get_server_info().address == "ctf.rubenwardy.com" then
             names[#names+1] = player
             times[#times+1] = time
         end
-        if (string.find(message, "has dropped ") and string.find(message, " flag")) or (string.find(message, "has captured ") and string.find(message, " flag")) then
+        if string.find(message, "has dropped ") and string.find(message, " flag") then
             player = message:sub(13,string.find(message, "has dropped ")-26)
-            remove_from_list(player,nil)
+            removefromlist(player,nil)
+        end
+        if string.find(message, "has captured ") and string.find(message, " flag") then
+            player = message:sub(13,string.find(message, "has captured ")-26)
+            removefromlist(player,nil)
         end
         if string.find(message, "Map: ") and string.find(message, " by ") then
             names = {}
@@ -54,7 +58,9 @@ if minetest.get_server_info().address == "ctf.rubenwardy.com" then
                     if (180-(time - starttime))*time_multiplier > 0 then
                         screen_message = screen_message .. name .. " has " .. remainingtime .. " seconds.\n"
                     else
-                        remove_from_list(nil,i)
+                        names[i] = nil
+                        times[i] = nil
+                        minetest.localplayer:hud_change(hud, "text", screen_message)
                     end
                 end
             end
@@ -77,17 +83,11 @@ if minetest.get_server_info().address == "ctf.rubenwardy.com" then
         return string.format("%02d:%02d", minutes, remaining_seconds)
     end
 
-    function remove_from_list(player,i)
-        if i then 
-            names[i] = nil
-            times[i] = nil
-            minetest.localplayer:hud_change(hud, "text", screen_message)
-        else
-            for i = 1, #names do
-                if names[i] == player then
-                    times[i] = nil
-                    names[i] = nil
-                end
+    function remove_from_list(player)
+        for i = 1, #names do
+            if names[i] == player then
+                times[i] = nil
+                names[i] = nil
             end
         end
     end
