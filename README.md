@@ -3,7 +3,8 @@ Written by Peace12345 (aka Brain_Juice)
 Keep track of cap timers of all players.
 
 Commands:
-Enable the timers with "/displaytimer true". Disable the timers with "/displaytimer false"
+Enable the timers with "/displaytimer true". Disable the timers with "/displaytimer false".
+
 How to download this (and other) CSMs:
  1. From github, click on the green "<> Code⏷" Button. From there, click "Download ZIP".
  2. Go to your Downloads folder. Extract the .zip file.
